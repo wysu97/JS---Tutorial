@@ -9,7 +9,7 @@ class Message extends React.Component{
     }
 
     handleClick () {
-
+        debugger
         this.setState({
             messageIsActive : !this.state.messageIsActive
         })
@@ -20,14 +20,14 @@ class Message extends React.Component{
         console.log(this.state.messageIsActive);
         const text = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa iusto deserunt itaque, enim voluptatem alias repellat praesentium saepe possimus, in, nobis mollitia fugiat ab. Sed animi placeat commodi nihil nostrum!';
         return (
-            <>
+            <React.Fragment>
                 <button onClick={this.handleClick}>{this.state.messageIsActive ? 'Ukryj': "Pokaż"}</button>
                 {/* <p>{this.state.messageIsActive ? text : ""}</p> */}
                 {
                     // this.state.messageIsActive ? <p>{text}</p>: null
                     this.state.messageIsActive && <p>{text}</p>
                 }
-            </>
+            </React.Fragment>
         )
     }
 }
