@@ -1,35 +1,35 @@
-class App extends React.Component {
-    state = {
-        value : ""
+class Message extends React.Component{
+
+    constructor(props){
+        super(props);
+        this.state = {
+            messageIsActive : false
+        }
+        this.handleClick = this.handleClick.bind(this)
+    }
+
+    handleClick () {
+
+        this.setState({
+            messageIsActive : !this.state.messageIsActive
+        })
     }
     
-    handleInputChange = (d) =>{
-        console.log("Zawartość w evencie: " + d.target.value)
-        console.log("Zawartość value przed setState: " + this.state.value)
-        this.setState({
-            value: d.target.value.toUpperCase()
-        })
-        console.log("Zawartość value po setState: " + this.state.value)
-    }
-    handleInputReset = () => {
-        this.setState({
-            value: ""
-        })
-    }
 
-
-    render() {
-        console.log("Zawartość value w trakcie metody render: " + this.state.value);
+    render(){
+        console.log(this.state.messageIsActive);
+        const text = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa iusto deserunt itaque, enim voluptatem alias repellat praesentium saepe possimus, in, nobis mollitia fugiat ab. Sed animi placeat commodi nihil nostrum!';
         return (
-            <React.Fragment>
-                <input value = {this.state.value} placeholder = 'wpisz' onChange={this.handleInputChange} type="text"/>
-                <button onClick={this.handleInputReset}>Reset</button>
-                <h1 className="tittle">{this.state.value}</h1>
-            </React.Fragment>
+            <>
+                <button onClick={this.handleClick}>{this.state.messageIsActive ? 'Ukryj': "Pokaż"}</button>
+                {/* <p>{this.state.messageIsActive ? text : ""}</p> */}
+                {
+                    // this.state.messageIsActive ? <p>{text}</p>: null
+                    this.state.messageIsActive && <p>{text}</p>
+                }
+            </>
         )
     }
 }
 
-
-
-ReactDOM.render(<App/>, document.getElementById('root'))
+ReactDOM.render(<Message/>, document.getElementById('root'))
